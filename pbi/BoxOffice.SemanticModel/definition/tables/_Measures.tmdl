@@ -1,0 +1,55 @@
+table _Measures
+	lineageTag: 8c4f6a91-2b3d-4e8a-9f1c-5d6e7a8b9c0d
+
+	measure 'Total Revenue' = SUM(FACT_DAILY_REVENUE[REVENUE])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d
+
+	measure 'Total Revenue (M)' = DIVIDE([Total Revenue], 1000000)
+		formatString: \$#,0.0"M"
+		lineageTag: 2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e
+
+	measure 'Films Count' = DISTINCTCOUNT(FACT_DAILY_REVENUE[MOVIE_KEY])
+		formatString: #,0
+		lineageTag: 3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f
+
+	measure 'Films Enriched' = DISTINCTCOUNT(DIM_MOVIE[IMDB_ID])
+		formatString: #,0
+		lineageTag: 4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f90
+
+	measure 'Avg Daily Revenue' = AVERAGE(FACT_DAILY_REVENUE[REVENUE])
+		formatString: \$#,0
+		lineageTag: 5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9012
+
+	measure 'Date Range' = FORMAT(MIN(FACT_DAILY_REVENUE[REVENUE_DATE]), "yyyy-MM-dd") & "  →  " & FORMAT(MAX(FACT_DAILY_REVENUE[REVENUE_DATE]), "yyyy-MM-dd")
+		lineageTag: 6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f901234
+
+	measure 'Top Film' = CONCATENATEX(TOPN(1, VALUES(DIM_MOVIE[TITLE]), [Total Revenue], DESC), DIM_MOVIE[TITLE])
+		lineageTag: 7a8b9c0d-1e2f-3a4b-5c6d-7e8f90123456
+
+	measure 'Avg IMDb Rating' = AVERAGE(DIM_MOVIE[IMDB_RATING])
+		formatString: 0.0
+		lineageTag: 8b9c0d1e-2f3a-4b5c-6d7e-8f9012345678
+
+	measure 'Last Refresh' = ```
+			
+			VAR utc = MIN(_RefreshMeta[RefreshedAt])
+			VAR isDST = MONTH(utc) >= 4 && MONTH(utc) <= 10
+			RETURN utc + IF(isDST, TIME(2,0,0), TIME(1,0,0))
+			
+			
+			```
+		formatString: yyyy-MM-dd HH:nn
+		lineageTag: 9c0d1e2f-3a4b-5c6d-7e8f-901234567890
+
+	column Value
+		lineageTag: ac8d4a00-e530-4420-9409-8ec05de480a4
+		isNameInferred
+		sourceColumn: [Value]
+
+	partition _Measures = calculated
+		mode: import
+		source = {BLANK()}
+
+	annotation PBI_Id = 9e8d7c6b5a4f3e2d1c0b9a8d7e6f5a4b
+

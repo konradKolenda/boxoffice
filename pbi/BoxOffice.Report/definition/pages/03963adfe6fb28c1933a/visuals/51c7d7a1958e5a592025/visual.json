@@ -1,0 +1,237 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "51c7d7a1958e5a592025",
+  "position": {
+    "x": 638.61171366594363,
+    "y": 454.66377440347071,
+    "z": 13,
+    "height": 254.75054229934923,
+    "width": 619.86984815618223,
+    "tabOrder": 13
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total Revenue"
+                }
+              },
+              "queryRef": "_Measures.Total Revenue",
+              "nativeQueryRef": "Total Revenue"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_MOVIE"
+                    }
+                  },
+                  "Property": "TITLE"
+                }
+              },
+              "queryRef": "DIM_MOVIE.TITLE",
+              "nativeQueryRef": "TITLE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_MOVIE"
+                    }
+                  },
+                  "Property": "DIRECTOR"
+                }
+              },
+              "queryRef": "DIM_MOVIE.DIRECTOR",
+              "nativeQueryRef": "DIRECTOR"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_MOVIE"
+                    }
+                  },
+                  "Property": "GENRES"
+                }
+              },
+              "queryRef": "DIM_MOVIE.GENRES",
+              "nativeQueryRef": "GENRES"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_MOVIE"
+                    }
+                  },
+                  "Property": "IMDB_RATING"
+                }
+              },
+              "queryRef": "Sum(DIM_MOVIE.IMDB_RATING)",
+              "nativeQueryRef": "IMDB_RATING1",
+              "displayName": "IMDB_RATING"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_MOVIE"
+                    }
+                  },
+                  "Property": "ROTTEN_TOMATOES_SCORE"
+                }
+              },
+              "queryRef": "Sum(DIM_MOVIE.ROTTEN_TOMATOES_SCORE)",
+              "nativeQueryRef": "ROTTEN_TOMATOES_SCORE",
+              "displayName": "ROTTEN_T_SCORE"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Measures"
+                  }
+                },
+                "Property": "Total Revenue"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "58c00a1129a27f13966d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_MOVIE"
+              }
+            },
+            "Property": "TITLE"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "1ba679649695868b2594",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Total Revenue"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a130fb5d7c5bfcab7670",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_MOVIE"
+              }
+            },
+            "Property": "DIRECTOR"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "fe4d4fb81e7814910d9a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_MOVIE"
+              }
+            },
+            "Property": "GENRES"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e575a766767931534f65",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_MOVIE"
+              }
+            },
+            "Property": "IMDB_RATING"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "3055f3478ed122b5c5a6",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_MOVIE"
+              }
+            },
+            "Property": "ROTTEN_TOMATOES_SCORE"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

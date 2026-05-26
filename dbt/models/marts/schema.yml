@@ -1,0 +1,82 @@
+
+version: 2
+
+models:
+
+  - name: dim_movie
+    description: >
+      One row per OMDb-enriched film. INNER JOIN'd to fact_daily_revenue since enrichment-only pivot
+      (decision log 2026-05-25). Includes denormalized lifetime_revenue + first/last seen dates for PBI top-N.
+    columns:
+      - name: imdb_id
+        description: IMDb identifier (e.g. tt4154796). Primary key.
+        data_tests:
+          - not_null
+          - unique
+      - name: imdb_rating
+        data_tests:
+          - dbt_utils.accepted_range:
+              min_value: 1.0
+              max_value: 10.0
+              inclusive: true
+
+  - name: dim_date
+    description: >
+      Calendar spine 2000-01-01 → 2025-12-31 generated via dbt_utils.date_spine.
+      date_key = YYYYMMDD::INT for fast integer joins in PBI.
+    columns:
+      - name: date_key
+        description: Integer date key, format YYYYMMDD. Primary key.
+        data_tests:
+          - not_null
+          - unique
+
+  - name: dim_distributor
+    description: >
+      One row per distinct distributor from CSV (NULL distributors dropped — also excluded from
+      fact since enrichment-only pivot 2026-05-25). MD5(distributor_name) surrogate.
+      Denormalized films_distributed_n + lifetime_revenue for PBI ranking.
+    columns:
+      - name: distributor_key
+        description: MD5(distributor_name). Primary key.
+        data_tests:
+          - not_null
+          - unique
+
+  - name: fact_daily_revenue
+    description: >
+      Daily revenue fact, ENRICHMENT-ONLY. INNER JOIN to dim_movie + dim_distributor so PBI never
+      sees blank title/distributor. Logical grain == physical grain == (movie_key, date_key,
+      distributor_key) — all NOT NULL. source_row_id kept as audit key (= RAW.REVENUES.ID).
+    columns:
+      - name: source_row_id
+        description: stg_revenues.id (= RAW.REVENUES.ID). Audit / absolute uniqueness key.
+        data_tests:
+          - not_null
+          - unique
+      - name: movie_key
+        description: FK to dim_movie.imdb_id. NOT NULL po pivocie do INNER JOIN.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_movie')
+              field: imdb_id
+      - name: date_key
+        description: FK to dim_date.date_key. YYYYMMDD::INT.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+      - name: distributor_key
+        description: FK to dim_distributor.distributor_key. NOT NULL po pivocie do INNER JOIN.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_distributor')
+              field: distributor_key
+      - name: revenue
+        data_tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+

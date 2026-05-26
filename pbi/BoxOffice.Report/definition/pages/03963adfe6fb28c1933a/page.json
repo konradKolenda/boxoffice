@@ -1,0 +1,154 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "03963adfe6fb28c1933a",
+  "displayName": "BoxOffice",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e0570b986265fb46fcdc",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_MOVIE"
+              }
+            },
+            "Property": "TITLE"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "fc5bdad4d697d8efa411",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_DATE"
+              }
+            },
+            "Property": "YEAR"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "f62f1fa439af7ca2f81a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_MOVIE"
+              }
+            },
+            "Property": "DIRECTOR"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "39b92985aed3b14c79bb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_DISTRIBUTOR"
+              }
+            },
+            "Property": "DISTRIBUTOR_NAME"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      }
+    ]
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": -0.2
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "5D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 1,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "line_daily_rev_v1",
+      "target": "bar_top_distributors_v1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "line_daily_rev_v1",
+      "target": "bar_top_directors_v1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "line_daily_rev_v1",
+      "target": "card_total_rev_v1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "bar_top_distributors_v1",
+      "target": "line_daily_rev_v1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "bar_top_distributors_v1",
+      "target": "bar_top_directors_v1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "bar_top_directors_v1",
+      "target": "bar_top_distributors_v1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "bar_top_directors_v1",
+      "target": "line_daily_rev_v1",
+      "type": "DataFilter"
+    }
+  ]
+}

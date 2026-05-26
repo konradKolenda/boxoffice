@@ -1,0 +1,13 @@
+# Astro Runtime 12.12.0 dostarcza out-of-the-box (przez transitive deps providers):
+#   - boto3 1.35.x (via aiobotocore)
+#   - requests 2.32.x
+# Nie dorzucamy ich tutaj.
+#
+# snowflake-connector-python NIE jest w Astro Runtime 12.12.0 (nie ma tez apache-airflow-providers-snowflake).
+# Dorzucamy bez pin - resolver wybierze najnowsza wersje kompatybilna z Airflow 2.10 constraints.
+# Pickup.py i omdb_fetch.py importuja `snowflake.connector` bezposrednio (Python connector, nie Airflow Hook).
+snowflake-connector-python
+
+# dbt-snowflake instalowany w SEPARATE venv via Dockerfile (/usr/local/airflow/dbt-venv).
+# Powod: dbt-core ciagnie wlasne piny jinja2/click/networkx ktore konfliktuja z Airflow core (`ResolutionTooDeep`).
+# `dbt_build` BashOp w PR #2 wywoluje /usr/local/airflow/dbt-venv/bin/dbt build (nie plain `dbt`).

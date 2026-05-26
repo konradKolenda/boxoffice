@@ -1,0 +1,14 @@
+table _RefreshMeta
+	lineageTag: ad1e2f3a-4b5c-6d7e-8f90-123456789abc
+
+	column RefreshedAt
+		lineageTag: 3ab1c55b-1902-4d52-b03c-42f580fdc1c2
+		isNameInferred
+		sourceColumn: [RefreshedAt]
+
+	partition _RefreshMeta = calculated
+		mode: import
+		source = ROW("RefreshedAt", UTCNOW())
+
+	annotation PBI_Id = ce3f4a5b6c7d8e9f0123456789abcdef
+

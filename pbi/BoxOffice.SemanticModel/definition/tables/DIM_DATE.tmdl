@@ -1,0 +1,119 @@
+table DIM_DATE
+	lineageTag: 934c4761-93c7-4b58-9cb3-482bc926b8e7
+
+	column DATE_KEY
+		dataType: double
+		lineageTag: 4d5eea62-ec50-4a70-a59d-1af8fe7a777c
+		summarizeBy: none
+		sourceColumn: DATE_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 45b8717c-ff10-429a-939a-569bb64ab2a3
+		summarizeBy: none
+		sourceColumn: DATE
+
+		variation Variation
+			isDefault
+			relationship: d832c406-c9c9-4934-8973-9249055dc728
+			defaultHierarchy: LocalDateTable_84375a4e-136b-4a2c-8067-dabf73c912b8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column YEAR
+		dataType: int64
+		lineageTag: 15e98a63-2fe1-4607-a70b-5b368bae78de
+		summarizeBy: none
+		sourceColumn: YEAR
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column QUARTER
+		dataType: double
+		lineageTag: b99c9df5-1e00-401e-99dd-5f9b24f9e3d4
+		summarizeBy: sum
+		sourceColumn: QUARTER
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MONTH
+		dataType: double
+		lineageTag: 27b214bc-134c-4714-bc1b-1c04b8d5055d
+		summarizeBy: sum
+		sourceColumn: MONTH
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MONTH_NAME
+		dataType: string
+		lineageTag: e17be0f7-2be6-4b73-8bc9-4ec52283febf
+		summarizeBy: none
+		sourceColumn: MONTH_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column DAY
+		dataType: double
+		lineageTag: 4bc042fe-29cf-4d03-9f0b-1b1e748d0642
+		summarizeBy: none
+		sourceColumn: DAY
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DAY_OF_WEEK
+		dataType: double
+		lineageTag: 4164ae68-52e9-4dcb-9af7-bff93e445f86
+		summarizeBy: none
+		sourceColumn: DAY_OF_WEEK
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DAY_NAME
+		dataType: string
+		lineageTag: 6e3b2247-ab04-48c7-9d7b-3bae34dbc5d9
+		summarizeBy: none
+		sourceColumn: DAY_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column IS_WEEKEND
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 733d797b-d9ca-418f-a461-a5d68a971836
+		summarizeBy: none
+		sourceColumn: IS_WEEKEND
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_DATE = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("gobzruo-yf37005.snowflakecomputing.com","BOXOFFICE_WH",[Implementation="2.0"]),
+				    BOXOFFICE_Database = Source{[Name="BOXOFFICE",Kind="Database"]}[Data],
+				    MARTS_Schema = BOXOFFICE_Database{[Name="MARTS",Kind="Schema"]}[Data],
+				    DIM_DATE_Table = MARTS_Schema{[Name="DIM_DATE",Kind="Table"]}[Data]
+				in
+				    DIM_DATE_Table
+
+	annotation PBI_ResultType = Table
+

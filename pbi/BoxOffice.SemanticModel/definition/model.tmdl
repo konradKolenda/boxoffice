@@ -1,0 +1,29 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+annotation PBI_QueryOrder = ["DIM_DISTRIBUTOR","DIM_DATE","DIM_MOVIE","FACT_DAILY_REVENUE"]
+
+ref table DIM_DISTRIBUTOR
+ref table DIM_DATE
+ref table DateTableTemplate_35a09313-7a2e-4caa-a83f-c729b37844de
+ref table LocalDateTable_84375a4e-136b-4a2c-8067-dabf73c912b8
+ref table DIM_MOVIE
+ref table LocalDateTable_2599149d-c1a3-444a-bf40-6830ebe9d8ca
+ref table LocalDateTable_29481646-9ffb-4da0-a35b-4f5976ee2fb1
+ref table LocalDateTable_c40ef6f8-52fb-45a0-975d-04fc13031a15
+ref table FACT_DAILY_REVENUE
+ref table LocalDateTable_8d07d520-4aa8-4ab7-964a-7f54bec4131d
+ref table _Measures
+ref table _RefreshMeta
+
+ref cultureInfo en-US
+

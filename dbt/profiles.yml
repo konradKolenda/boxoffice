@@ -1,0 +1,22 @@
+
+boxoffice:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account:   "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user:      "{{ env_var('SNOWFLAKE_DBT_USER') }}"
+      role:      "{{ env_var('SNOWFLAKE_DBT_ROLE') }}"
+      warehouse: "{{ env_var('SNOWFLAKE_DBT_WAREHOUSE') }}"
+      database:  "{{ env_var('SNOWFLAKE_DATABASE') }}"
+
+      schema:    STAGING
+
+      private_key_path:       "{{ env_var('SNOWFLAKE_DBT_PRIVATE_KEY_PATH', '') }}"
+      private_key_passphrase: "{{ env_var('SNOWFLAKE_DBT_PRIVATE_KEY_PASSPHRASE', '') }}"
+
+      threads: 4
+
+      client_session_keep_alive: false
+
+      query_tag: boxoffice-dbt

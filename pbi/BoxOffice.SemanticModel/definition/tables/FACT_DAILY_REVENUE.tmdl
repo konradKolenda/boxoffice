@@ -1,0 +1,86 @@
+table FACT_DAILY_REVENUE
+	lineageTag: 79025c60-aec4-4d2e-b623-33db0ed0e015
+
+	column SOURCE_ROW_ID
+		dataType: string
+		lineageTag: 849e2b12-eab9-4d47-a4a3-ffa0f53921c2
+		summarizeBy: none
+		sourceColumn: SOURCE_ROW_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MOVIE_KEY
+		dataType: string
+		lineageTag: e1cd329f-a2d3-4e87-b90d-cb534adc648c
+		summarizeBy: none
+		sourceColumn: MOVIE_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATE_KEY
+		dataType: double
+		lineageTag: 574bb35b-1d75-4d2f-a87e-f5b7da0c24d3
+		summarizeBy: none
+		sourceColumn: DATE_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DISTRIBUTOR_KEY
+		dataType: string
+		lineageTag: 416392fb-0fb1-4824-a3ee-100f70fd965e
+		summarizeBy: none
+		sourceColumn: DISTRIBUTOR_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column REVENUE
+		dataType: double
+		lineageTag: 13d7cda4-9a1b-476d-ac95-7cd8b33db978
+		summarizeBy: sum
+		sourceColumn: REVENUE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column THEATERS
+		dataType: double
+		lineageTag: 23f64b23-eae5-4cd3-b3c0-bd081a3a99d0
+		summarizeBy: sum
+		sourceColumn: THEATERS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column REVENUE_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: bbca198d-2520-4a77-b4cd-70752424f4b1
+		summarizeBy: none
+		sourceColumn: REVENUE_DATE
+
+		variation Variation
+			isDefault
+			relationship: 21ad1f89-9a1e-4678-83d1-d0b344c332c0
+			defaultHierarchy: LocalDateTable_8d07d520-4aa8-4ab7-964a-7f54bec4131d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition FACT_DAILY_REVENUE = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("gobzruo-yf37005.snowflakecomputing.com","BOXOFFICE_WH",[Implementation="2.0"]),
+				    BOXOFFICE_Database = Source{[Name="BOXOFFICE",Kind="Database"]}[Data],
+				    MARTS_Schema = BOXOFFICE_Database{[Name="MARTS",Kind="Schema"]}[Data],
+				    FACT_DAILY_REVENUE_Table = MARTS_Schema{[Name="FACT_DAILY_REVENUE",Kind="Table"]}[Data]
+				in
+				    FACT_DAILY_REVENUE_Table
+
+	annotation PBI_ResultType = Table
+

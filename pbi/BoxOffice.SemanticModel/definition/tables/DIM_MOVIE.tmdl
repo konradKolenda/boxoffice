@@ -1,0 +1,246 @@
+table DIM_MOVIE
+	lineageTag: c846779f-cf2e-48b7-80ee-3bf5fa047547
+
+	column IMDB_ID
+		dataType: string
+		lineageTag: c190682f-e56d-4738-832c-32d9faf66d44
+		summarizeBy: none
+		sourceColumn: IMDB_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TITLE
+		dataType: string
+		lineageTag: aa8aef2a-ec45-4ee6-bbeb-480f8f68789f
+		summarizeBy: none
+		sourceColumn: TITLE
+
+		annotation SummarizationSetBy = Automatic
+
+	column LOOKUP_TITLE
+		dataType: string
+		lineageTag: 8d06f802-ab4a-43fe-8e02-334118b57612
+		summarizeBy: none
+		sourceColumn: LOOKUP_TITLE
+
+		annotation SummarizationSetBy = Automatic
+
+	column RELEASE_YEAR
+		dataType: double
+		lineageTag: a62ace16-b4dd-4836-b365-74d12ac3d508
+		summarizeBy: sum
+		sourceColumn: RELEASE_YEAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RUNTIME_MIN
+		dataType: double
+		lineageTag: 20855108-8437-42ac-9b02-dcc7826e9306
+		summarizeBy: sum
+		sourceColumn: RUNTIME_MIN
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GENRES
+		dataType: string
+		lineageTag: 45d16e18-b016-4f46-aa6a-e5b5aa535dce
+		summarizeBy: none
+		sourceColumn: GENRES
+
+		annotation SummarizationSetBy = Automatic
+
+	column DIRECTOR
+		dataType: string
+		lineageTag: f109cfd4-5c73-4d6c-932f-89a3e47cc2e0
+		summarizeBy: none
+		sourceColumn: DIRECTOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column WRITER
+		dataType: string
+		lineageTag: 7e037ba9-c29c-4b19-b151-f6f3964519cf
+		summarizeBy: none
+		sourceColumn: WRITER
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTORS
+		dataType: string
+		lineageTag: 2ab5e803-ee56-4472-99b6-8c308389449f
+		summarizeBy: none
+		sourceColumn: ACTORS
+
+		annotation SummarizationSetBy = Automatic
+
+	column PLOT
+		dataType: string
+		lineageTag: 4ee1cd9b-5851-490e-bebc-6de2a212bc96
+		summarizeBy: none
+		sourceColumn: PLOT
+
+		annotation SummarizationSetBy = Automatic
+
+	column LANGUAGES
+		dataType: string
+		lineageTag: 57a89fb5-5a8e-4183-a87f-cb64b8e640a6
+		summarizeBy: none
+		sourceColumn: LANGUAGES
+
+		annotation SummarizationSetBy = Automatic
+
+	column COUNTRY
+		dataType: string
+		lineageTag: a585dde8-1e2b-44c1-9e22-4d5fd650a56b
+		summarizeBy: none
+		sourceColumn: COUNTRY
+
+		annotation SummarizationSetBy = Automatic
+
+	column RATED
+		dataType: string
+		lineageTag: 09c1f901-de4a-4ca3-80a7-e96bfb3de6ab
+		summarizeBy: none
+		sourceColumn: RATED
+
+		annotation SummarizationSetBy = Automatic
+
+	column AWARDS
+		dataType: string
+		lineageTag: 378b91f1-ee3a-49db-8aa1-4bd694ea31af
+		summarizeBy: none
+		sourceColumn: AWARDS
+
+		annotation SummarizationSetBy = Automatic
+
+	column POSTER_URL
+		dataType: string
+		lineageTag: 3df8cddd-047e-4308-a5be-dad8fb180983
+		summarizeBy: none
+		sourceColumn: POSTER_URL
+
+		annotation SummarizationSetBy = Automatic
+
+	column IMDB_RATING
+		dataType: double
+		lineageTag: a728be1e-5290-40ae-a3a0-3eeec1b1e504
+		summarizeBy: none
+		sourceColumn: IMDB_RATING
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column METASCORE
+		dataType: double
+		lineageTag: 675db1e2-5edc-490d-82ce-ab7575c8dfa9
+		summarizeBy: sum
+		sourceColumn: METASCORE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ROTTEN_TOMATOES_SCORE
+		dataType: double
+		lineageTag: 48c5f9b4-b436-45bd-9b6e-997899845bb2
+		summarizeBy: none
+		sourceColumn: ROTTEN_TOMATOES_SCORE
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column IMDB_VOTES
+		dataType: double
+		lineageTag: 74906789-fff3-4c85-9ad3-f52fe068a659
+		summarizeBy: sum
+		sourceColumn: IMDB_VOTES
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BOX_OFFICE_OMDB
+		dataType: double
+		lineageTag: 774c4c79-33f3-4de1-84a2-5cefdd9358b7
+		summarizeBy: sum
+		sourceColumn: BOX_OFFICE_OMDB
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FIRST_REVENUE_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: dc2020cf-fe9e-4686-95d5-2fc233b4a58e
+		summarizeBy: none
+		sourceColumn: FIRST_REVENUE_DATE
+
+		variation Variation
+			isDefault
+			relationship: 3f1bbc4a-53b2-4cd9-942f-cf7cfd762e8f
+			defaultHierarchy: LocalDateTable_2599149d-c1a3-444a-bf40-6830ebe9d8ca.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column LAST_REVENUE_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4f4229c9-56aa-466b-ab1d-39179deb656f
+		summarizeBy: none
+		sourceColumn: LAST_REVENUE_DATE
+
+		variation Variation
+			isDefault
+			relationship: b8608f4d-5694-4e69-9a9f-d5085face7c1
+			defaultHierarchy: LocalDateTable_29481646-9ffb-4da0-a35b-4f5976ee2fb1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column LIFETIME_REVENUE
+		dataType: double
+		lineageTag: 9029264f-6121-4b71-b395-0233dac460ca
+		summarizeBy: sum
+		sourceColumn: LIFETIME_REVENUE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column OMDB_FETCHED_AT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 53d5acb3-0292-490e-a94a-68ac52045c3a
+		summarizeBy: none
+		sourceColumn: OMDB_FETCHED_AT
+
+		variation Variation
+			isDefault
+			relationship: 755f9751-1f8a-4077-9992-a42f1814e0d8
+			defaultHierarchy: LocalDateTable_c40ef6f8-52fb-45a0-975d-04fc13031a15.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_MOVIE = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("gobzruo-yf37005.snowflakecomputing.com","BOXOFFICE_WH",[Implementation="2.0"]),
+				    BOXOFFICE_Database = Source{[Name="BOXOFFICE",Kind="Database"]}[Data],
+				    MARTS_Schema = BOXOFFICE_Database{[Name="MARTS",Kind="Schema"]}[Data],
+				    DIM_MOVIE_Table = MARTS_Schema{[Name="DIM_MOVIE",Kind="Table"]}[Data]
+				in
+				    DIM_MOVIE_Table
+
+	annotation PBI_ResultType = Table
+

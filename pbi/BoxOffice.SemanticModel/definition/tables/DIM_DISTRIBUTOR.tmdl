@@ -1,0 +1,52 @@
+table DIM_DISTRIBUTOR
+	lineageTag: 1ba315f5-2507-4d62-be8b-77a45ab58902
+
+	column DISTRIBUTOR_KEY
+		dataType: string
+		lineageTag: 776af724-ea07-4036-a456-e33c4320bc5f
+		summarizeBy: none
+		sourceColumn: DISTRIBUTOR_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+	column DISTRIBUTOR_NAME
+		dataType: string
+		lineageTag: 764dac49-62be-47d0-bd73-398b987eeffd
+		summarizeBy: none
+		sourceColumn: DISTRIBUTOR_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column FILMS_DISTRIBUTED_N
+		dataType: double
+		lineageTag: 0dc00ad6-1346-4818-8a65-a09779787db1
+		summarizeBy: none
+		sourceColumn: FILMS_DISTRIBUTED_N
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LIFETIME_REVENUE
+		dataType: double
+		lineageTag: ff894870-6c1d-4075-9839-a2b73b1b509f
+		summarizeBy: none
+		sourceColumn: LIFETIME_REVENUE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DIM_DISTRIBUTOR = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("gobzruo-yf37005.snowflakecomputing.com","BOXOFFICE_WH",[Implementation="2.0"]),
+				    BOXOFFICE_Database = Source{[Name="BOXOFFICE",Kind="Database"]}[Data],
+				    MARTS_Schema = BOXOFFICE_Database{[Name="MARTS",Kind="Schema"]}[Data],
+				    DIM_DISTRIBUTOR_Table = MARTS_Schema{[Name="DIM_DISTRIBUTOR",Kind="Table"]}[Data]
+				in
+				    DIM_DISTRIBUTOR_Table
+
+	annotation PBI_ResultType = Table
+

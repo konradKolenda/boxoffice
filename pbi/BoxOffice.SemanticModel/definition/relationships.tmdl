@@ -1,0 +1,38 @@
+relationship d832c406-c9c9-4934-8973-9249055dc728
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DIM_DATE.DATE
+	toColumn: LocalDateTable_84375a4e-136b-4a2c-8067-dabf73c912b8.Date
+
+relationship 3f1bbc4a-53b2-4cd9-942f-cf7cfd762e8f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DIM_MOVIE.FIRST_REVENUE_DATE
+	toColumn: LocalDateTable_2599149d-c1a3-444a-bf40-6830ebe9d8ca.Date
+
+relationship b8608f4d-5694-4e69-9a9f-d5085face7c1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DIM_MOVIE.LAST_REVENUE_DATE
+	toColumn: LocalDateTable_29481646-9ffb-4da0-a35b-4f5976ee2fb1.Date
+
+relationship 755f9751-1f8a-4077-9992-a42f1814e0d8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DIM_MOVIE.OMDB_FETCHED_AT
+	toColumn: LocalDateTable_c40ef6f8-52fb-45a0-975d-04fc13031a15.Date
+
+relationship 21ad1f89-9a1e-4678-83d1-d0b344c332c0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FACT_DAILY_REVENUE.REVENUE_DATE
+	toColumn: LocalDateTable_8d07d520-4aa8-4ab7-964a-7f54bec4131d.Date
+
+relationship AutoDetected_69425273-78a8-40b8-957a-549d188187c5
+	crossFilteringBehavior: bothDirections
+	fromColumn: FACT_DAILY_REVENUE.DISTRIBUTOR_KEY
+	toColumn: DIM_DISTRIBUTOR.DISTRIBUTOR_KEY
+
+relationship AutoDetected_ca8fa0a3-7c08-4979-aa4a-321e9970bc00
+	fromColumn: FACT_DAILY_REVENUE.DATE_KEY
+	toColumn: DIM_DATE.DATE_KEY
+
+relationship fact_movie_fk_8e7a6c1b
+	fromColumn: FACT_DAILY_REVENUE.MOVIE_KEY
+	toColumn: DIM_MOVIE.IMDB_ID
+

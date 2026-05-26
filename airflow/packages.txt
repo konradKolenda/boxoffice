@@ -1,0 +1,4 @@
+# apt packages instalowane w Astro Runtime obrazie.
+# learn: jq - parsuje JSON, uzywany przez pbi/refresh.sh do wyciagania access_token z Azure AD OAuth response.
+# learn: Astro Runtime nie ma go domyslnie - bez tego BashOp refresh_pbi pada 'jq: command not found' (exit 127).
+jq

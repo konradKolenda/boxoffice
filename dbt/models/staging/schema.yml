@@ -1,0 +1,28 @@
+
+version: 2
+
+models:
+
+  - name: stg_revenues
+    description: >
+      Cleaned daily box-office rows from RAW.REVENUES. Title trimmed + whitespace-collapsed,
+      defensively deduped on id, adds release_year = MIN(YEAR(revenue_date)) per title
+      as the join key to OMDb / dim_movie.
+    columns:
+      - name: id
+        description: Per-row identifier (UUID-shaped VARCHAR from source CSV). Primary key.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - revenue_date
+            - title
+            - distributor
+
+  - name: stg_omdb_movies
+    description: >
+      Flattened OMDb movie metadata. Filtered to STATUS='found' AND Type='movie'.
+      'N/A' sentinels converted to SQL NULL. Numeric strings ("181 min", "$858,373,000")
+      parsed to NUMBER. Rotten Tomatoes extracted from Ratings array by Source name.
+    columns:
+      - name: imdb_id
+        description: IMDb identifier (e.g. tt4154796). Primary key.

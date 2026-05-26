@@ -1,0 +1,29 @@
+
+version: 2
+
+sources:
+  - name: raw
+    database: BOXOFFICE
+    schema: RAW
+    description: >
+      Raw landing layer. Owned by Airflow EL (pickup task + omdb_fetch.py).
+      Read-only for dbt — dbt nigdy nie modyfikuje obiektow w RAW.
+
+    tables:
+      - name: revenues
+        description: >
+          Daily box-office revenue rows. Grain: jeden wiersz per (movie, day).
+          Loaded by Airflow via COPY INTO from @S3_BOX_OFFICE, jeden plik per pickup run.
+        loaded_at_field: _loaded_at
+        freshness:
+          warn_after:  {count: 36, period: hour}
+          error_after: {count: 72, period: hour}
+
+      - name: omdb
+        description: >
+          OMDb wrapped JSON cache. External Table backed by s3://kk-demo-pipeline/raw/omdb/.
+          dbt staging filtruje WHERE STATUS = 'found' AND RESPONSE:Type::VARCHAR = 'movie'.
+        loaded_at_field: _fetched_at
+        freshness:
+          warn_after:  {count: 7,  period: day}
+          error_after: {count: 14, period: day}
