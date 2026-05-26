@@ -62,7 +62,7 @@ flowchart TB
 
 ## Jak to wygląda w praktyce
 
-Pełen przebieg pipeline'a w wideo:
+Pełen przebieg pipeline'u w wideo:
 
 | End-to-end demo | Logs & observability |
 |:---:|:---:|
