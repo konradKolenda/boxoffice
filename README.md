@@ -4,7 +4,7 @@ Demo data pipeline. Symuluje proces otrzymywania plików źródłowych (w tym pr
 
 ## Stack i kluczowe decyzje
 
-Skoncentrowałem się na części EL i muszę powiedzieć, że zadanie okazało się naprawdę ciekawe (w sensie nie tyle, jak je zrobić, co jak je zrobić optymalnie — co też mam nadzieję udało mi się w stopniu przynajmniej zadowalającym).
+Skoncentrowałem się na części EL i muszę przyznać, że zadanie okazało się naprawdę ciekawe — nie tyle pod kątem samego wykonania, co optymalizacji.
 
 - **Snowflake** — oprócz raczej typowej struktury myślę, że punktem wartym omówienia jest użycie External Table oraz procedur do ładowania danych.
 - **dbt** — warto zwrócić uwagę, że to w tej warstwie sprawdzam duplikaty.
